@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/iconfont.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="./tools/user.js"></script>
+    <script src="./tools/config.js"></script>
 </head>
 
 <body>
@@ -119,39 +121,18 @@
                 return;
 
             }
-            $.ajax({
-                type: "post",
-                url: "http://localhost:8000/admin/logout",
-                success: function (res) {
-
-                    if (res.code === 200) {
-                        location.href = "./login.html"
-
-                    } else {
-                        alert("网络不好");
-                    }
+            user.logout({
+                success: function () {
+                    location.href = "./login.html"
 
 
-
-
-
-
-
+                },
+                fail: function () {
+                    alert("1")
 
                 }
 
-
-
-
-
-
-
-
-
-
             })
-
-
 
 
 

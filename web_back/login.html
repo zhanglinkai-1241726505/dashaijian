@@ -32,6 +32,8 @@
 
     </div>
     <script src="./js/jquery-1.12.4.min.js"></script>
+    <script src="tools./config.js"></script>
+    <script src="../web_back/tools/user.js"></script>
     <script>
 
         var $input_txt = $(".input_txt");
@@ -48,24 +50,17 @@
 
             }
 
-
-            $.ajax({
-                type: "post",
-                url: "http://localhost:8000/admin/login",
+            user.login({
                 data: {
                     user_name: username,
-                    password: password
+                    password: password,
+                }, success: function () {
+                    location.href = "./index.html"
 
+                },
+                fail: function () {
 
-                }, success: function (res) {
-                    if (res.code === 200) {
-                        location.href = "./index.html"
-
-                    } else {
-                        alert("cuo")
-                    }
-
-
+                    alert(1);
 
                 }
 
@@ -73,8 +68,17 @@
 
 
 
-
             })
+
+
+
+
+
+
+
+
+
+
 
         })
 

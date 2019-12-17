@@ -164,6 +164,59 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+        $("#modal_add").on("click", function () {
+            var nameval = $("#name").val().trim();
+            var slugval = $("#slug").val().trim();
+            if (nameval === "" || slugval === "") {
+                alert("你好好的")
+                return;
+
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8000/admin/category_add",
+                data: $("form").serialize(),
+                success: function (res) {
+                    if (res.code === 200) {
+                        location.reload();
+
+                    }
+
+
+                }
+
+            })
+
+
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </script>
 
 </body>

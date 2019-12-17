@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // var arr = [4, 1, 2, 3, 5];
+        // for (var i = 0; i < arr.length - 1; i++) {
+        //     for (var j = 0; j < arr.length - 1 - i; j++) {
+        //         if (arr[j] > arr[j + 1]) {
+        //             var tmp = arr[j];
+        //             arr[j] = arr[j + 1];
+        //             arr[j + 1] = tmp;
+        //         }
+        //     }
+
+        // }
+        // console.log(arr);
+
+
+        function obj(name, age) {
+            this.name = name,
+                this.age = age
+
+
+
+        }
+        // 方法放在原型对象中
+        // var a = new obj("张三丰", 12)
+        // console.log(a);
+        function obj1(name, age) {
+
+            obj.call(this, name, age)
+
+
+
+        }
+        var b = new obj1("张三丰", 12)
+        console.log(b);
+
+
+    </script>
+</body>
+
+</html>

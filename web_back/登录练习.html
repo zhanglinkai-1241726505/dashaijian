@@ -32,6 +32,9 @@
         </div>
 
     </div>
+    <!-- 下面是框框 -->
+
+
 
 
     <div class="modal fade" id="mymodal" tabindex="-1" role="dialog">
@@ -64,59 +67,60 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <script src="./js/jquery-1.12.4.min.js"></script>
     <script src="tools./config.js"></script>
     <script src="../web_back/tools/user.js"></script>
     <script src="./js/bootstrap/js/bootstrap.min.js"></script>
+
     <script>
 
-        // var $input_txt = $(".input_txt");
-        // var $input_pass = $(".input_pass");
+
+        var $input_txt = $(".input_txt");
+        var $input_pass = $(".input_pass");
         $(".input_sub").on("click", function () {
 
-            // var username = $input_txt.val().trim();
-            // var password = $input_pass.val().trim();
-            var username = $(".input_txt").val().trim();
-            var password = $(".input_pass").val().trim();
+            var username = $input_txt.val().trim();
+            var password = $input_pass.val().trim();
             if (username === "" || password === "") {
                 $('#mymodal').modal("show")
                 return;
 
 
-
+                5
             }
 
             user.login({
-
                 data: {
                     user_name: username,
                     password: password
 
 
                 },
-
-                success: function () {
-
+                success: function (res) {
                     location.href = "./index.html"
 
+
                 },
+                fail: function (res) {
 
-                fail: function () {
-
+                    // alert("你好好的")
 
                 }
-
-
             })
-
-
-
-
-
-
-
-
-
 
 
         })
@@ -130,7 +134,16 @@
 
 
 
+
+
+
     </script>
+
+
+
+
+
+
 </body>
 
 </html>

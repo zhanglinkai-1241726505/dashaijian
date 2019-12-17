@@ -16,11 +16,11 @@ var user = {
             },
             success: function (res) {
                 if (res.code === 200) {
-                    options.success();
+                    options.success(res);
 
                 }
                 else {
-                    options.fail();
+                    options.fail(res);
 
                 }
 
@@ -42,10 +42,8 @@ var user = {
 
     },
 
-
-
-
     logout: function (options) {
+
         $.ajax({
             type: "post",
             url: LOGOUT,
@@ -53,16 +51,16 @@ var user = {
                 if (res.code === 200) {
                     options.success();
 
-
                 } else {
-
 
                     options.fail();
                 }
 
 
 
+
             }
+
 
 
         })
@@ -71,32 +69,39 @@ var user = {
 
 
 
+    },
+
+
+
+
+    name: function (options) {
+        $.ajax({
+
+            url: ADMIN,
+            success: function (res) {
+                if (res.code === 200) {
+                    options.success(res);
+                    // console.log(res);
+
+
+
+                } else {
+
+
+                    options.fail(res);
+                }
+
+
+
+            }
+
+
+
+
+
+        })
+
+
 
     }
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -111,57 +111,44 @@
             }
         }
 
-
-        var $logout = $(".logout")
-        $logout.on("click", function () {
-
-
-
+        var logout = $(".logout")
+        logout.on("click", function () {
             if (!confirm("退出")) {
-                // return;
+                return;
 
             }
+
+
             user.logout({
                 success: function () {
                     location.href = "./login.html"
 
-
                 },
                 fail: function () {
-                    alert("1")
-
+                    alert("你好好的")
                 }
+
+
 
             })
 
 
 
-
-
-
         })
 
+
         user.name({
+
             success: function (res) {
 
+                $(".user_info span").text("欢迎" + res.data.nickname);
+                $(".user_info img,.user_center_link img").prop("src", res.data.user_pic);
 
-                $(".name").html(res.data.nickname);
-                $("#img")[0].src = res.data.user_pic
-                $("#img2")[0].src = res.data.user_pic
-                // console.log(res);
-
-
-
-            },
-            fail: function (res) {
-                alert(1);
             }
 
 
 
         })
-
-
 
 
     </script>

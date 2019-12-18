@@ -103,5 +103,111 @@ var user = {
 
 
 
+    },
+
+
+
+    gettingdata: function (options) {
+
+
+        $.ajax({
+            url: "http://localhost:8000/admin/category_search",
+            success: function (res) {
+                if (res.code === 200) {
+                    // 1.2模板字符串
+                    options.success(res)
+
+                }
+
+            }
+
+
+
+
+        })
+
+
+
+
+
+
+
+
+
+
+    },
+
+
+
+    newdata: function (options) {
+
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8000/admin/category_add",
+            data: options.data,
+            success: function (res) {
+                console.log(res);
+
+                options.success(res)
+
+
+            }
+
+        })
+
+
+
+    },
+
+
+
+
+    // 编辑
+
+    compile: function (options) {
+
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8000/admin/category_edit",
+            data: options.data,
+            success: function (res) {
+                options.success();
+
+
+            }
+        })
+
+
+
+
+    },
+    // 删除
+    deleta: function (options) {
+
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8000/admin/category_delete",
+            data: options.data,
+
+
+            success: function (res) {
+                // console.log(res);
+
+
+                options.success(res)
+            }
+
+
+        })
+
+
+
+
     }
+
+
+
 }

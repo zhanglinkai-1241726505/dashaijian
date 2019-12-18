@@ -27,24 +27,24 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">文章标题：</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="文章标题">
+                        <input type="text" class="form-control" id="inputEmail3" placeholder="文章标题" name="title">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">文章封面：</label>
                     <div class="col-sm-10">
-                        <input type="file" id="exampleInputFile">
+                        <input type="file" id="exampleInputFile" name="cover">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">文章类别：</label>
                     <div class="col-sm-4">
-                        <select class="form-control">
-                            <option>1</option>
+                        <select class="form-control" id="category" name="type">
+                            <!-- <option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
-                            <option>5</option>
+                            <option>5</option> -->
                         </select>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                     <div class="col-sm-4">
 
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="YYYY-MM-DD" id="dateinput">
+                            <input type="text" class="form-control" placeholder="YYYY-MM-DD" id="dateinput" name="date">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="button"
                                     onclick="jeDate('#dateinput',{trigger:false,format: 'YYYY-MM-DD'})"><i
@@ -65,20 +65,84 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">文章内容：</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" id="rich_content" name="content" placeholder="文章内容">
+                        <textarea class="form-control" id="rich_content" placeholder="文章内容">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda fugiat illo nihil molestias ab. Laborum eius non atque, totam sapiente quae obcaecati assumenda ratione inventore pariatur maiores, qui libero delectus.
                             </textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-success">发布</button>
-                        <button type="submit" class="btn btn-default">存为草稿</button>
+                        <button type="button" id="publish" class="btn btn-success">发布</button>
+                        <button type="button" class="btn btn-default">存为草稿</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+
+
+    <script src="./tools/user.js"></script>
+    <script src="./tools/config.js"></script>
+    <script src="./js/template-web.js"></script>
+
+    <script type="text/template" id="he">
+        {{each data val}}
+        <option value="{{val.id}}">{{val.name}}</option>
+        {{/each}}
+
+    </script>
+
+
+    <script>
+
+
+        // 1文章分类信息,进行下拉菜单
+
+        user.gettingdata({
+
+            success: function (res) {
+
+                $("#category").html(template("he", res))
+
+
+            }
+        })
+
+        // 2点击发布
+        $("#publish").on("click", function () {
+            var fd = new FormData($("form")[0])
+            // 2.3将富文本中的内容取出来,加载fd中
+            fd.append('content', tinymce.activeEditor.getContent());
+            fd.append('state', '已发布');
+            $.ajax({
+
+                type: "post",
+                url: "http://localhost:8000/admin/article_publish",
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function (res) {
+
+
+                    if (res.code === 201) {
+                        location.href = './article_list.html';
+
+                    }
+
+                }
+
+
+
+            })
+
+
+        })
+
+
+
+
+
+    </script>
 
 </body>
 
